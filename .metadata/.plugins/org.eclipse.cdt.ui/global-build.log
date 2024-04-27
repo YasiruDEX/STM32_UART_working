@@ -1,0 +1,384 @@
+10:27:41 **** Incremental Build of configuration Debug for project UART_test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:110:11: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  110 |           sprintf(stateChar, "%d", stateOfPushButton);
+      |           ^~~~~~~
+../Core/Src/main.c:22:1: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+   21 | #include <stdbool.h>
+  +++ |+#include <stdio.h>
+   22 | 
+../Core/Src/main.c:110:11: warning: incompatible implicit declaration of built-in function 'sprintf' [-Wbuiltin-declaration-mismatch]
+  110 |           sprintf(stateChar, "%d", stateOfPushButton);
+      |           ^~~~~~~
+../Core/Src/main.c:110:11: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../Core/Src/main.c:111:60: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  111 |           HAL_UART_Transmit(&huart2, (uint8_t *)stateChar, strlen(stateChar), 10);
+      |                                                            ^~~~~~
+../Core/Src/main.c:22:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   21 | #include <stdbool.h>
+  +++ |+#include <string.h>
+   22 | 
+../Core/Src/main.c:111:60: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+  111 |           HAL_UART_Transmit(&huart2, (uint8_t *)stateChar, strlen(stateChar), 10);
+      |                                                            ^~~~~~
+../Core/Src/main.c:111:60: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:271:54: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  271 |                           HAL_UART_Transmit(&huart2, "\n\r", 2, 100);
+      |                                                      ^~~~~~
+      |                                                      |
+      |                                                      char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:272:31: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  272 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                               ^~~~~~
+../Core/Src/main.c:272:31: note: include '<string.h>' or provide a declaration of 'strcmp'
+../Core/Src/main.c:272:38: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  272 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                                      ^~~~~~~~~
+      |                                      |
+      |                                      uint8_t * {aka unsigned char *}
+../Core/Src/main.c:272:38: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:275:44: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  275 |                           }else if(!strcmp(rx_buffer, "LED OFF"))
+      |                                            ^~~~~~~~~
+      |                                            |
+      |                                            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:275:44: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:287:55: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+  287 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                       ^~~~~~
+../Core/Src/main.c:287:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:287:62: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  287 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                              ^~~~~~~
+      |                                                              |
+      |                                                              uint8_t * {aka unsigned char *}
+../Core/Src/main.c:287:62: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "UART_test.elf" @"objects.list"   -mcpu=cortex-m0plus -T"E:\Github-ex\STM32_UART_working\UART_test\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_test.elf
+ 
+arm-none-eabi-size  UART_test.elf 
+arm-none-eabi-objdump -h -S UART_test.elf  > "UART_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  20692	    100	   2164	  22956	   59ac	UART_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_test.list
+ 
+10:29:17 **** Incremental Build of configuration Debug for project UART_test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:109:46: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  109 |                   HAL_UART_Transmit(&huart2, "Pressed!", 8, 10);
+      |                                              ^~~~~~~~~~
+      |                                              |
+      |                                              char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:275:54: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  275 |                           HAL_UART_Transmit(&huart2, "\n\r", 2, 100);
+      |                                                      ^~~~~~
+      |                                                      |
+      |                                                      char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:276:31: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  276 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                               ^~~~~~
+../Core/Src/main.c:22:1: note: include '<string.h>' or provide a declaration of 'strcmp'
+   21 | #include <stdbool.h>
+  +++ |+#include <string.h>
+   22 | 
+../Core/Src/main.c:276:38: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  276 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                                      ^~~~~~~~~
+      |                                      |
+      |                                      uint8_t * {aka unsigned char *}
+../Core/Src/main.c:276:38: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:279:44: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  279 |                           }else if(!strcmp(rx_buffer, "LED OFF"))
+      |                                            ^~~~~~~~~
+      |                                            |
+      |                                            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:279:44: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:291:55: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  291 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                       ^~~~~~
+../Core/Src/main.c:291:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:291:55: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+../Core/Src/main.c:291:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:291:62: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  291 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                              ^~~~~~~
+      |                                                              |
+      |                                                              uint8_t * {aka unsigned char *}
+../Core/Src/main.c:291:62: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "UART_test.elf" @"objects.list"   -mcpu=cortex-m0plus -T"E:\Github-ex\STM32_UART_working\UART_test\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_test.elf
+ 
+arm-none-eabi-size  UART_test.elf 
+arm-none-eabi-objdump -h -S UART_test.elf  > "UART_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  18220	     20	   1828	  20068	   4e64	UART_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_test.list
+ 
+10:30:26 **** Incremental Build of configuration Debug for project UART_test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:109:46: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  109 |                   HAL_UART_Transmit(&huart2, "Pressed!\n\r", 10, 10);
+      |                                              ^~~~~~~~~~~~~~
+      |                                              |
+      |                                              char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:275:54: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  275 |                           HAL_UART_Transmit(&huart2, "\n\r", 2, 100);
+      |                                                      ^~~~~~
+      |                                                      |
+      |                                                      char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:276:31: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  276 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                               ^~~~~~
+../Core/Src/main.c:22:1: note: include '<string.h>' or provide a declaration of 'strcmp'
+   21 | #include <stdbool.h>
+  +++ |+#include <string.h>
+   22 | 
+../Core/Src/main.c:276:38: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  276 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                                      ^~~~~~~~~
+      |                                      |
+      |                                      uint8_t * {aka unsigned char *}
+../Core/Src/main.c:276:38: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:279:44: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  279 |                           }else if(!strcmp(rx_buffer, "LED OFF"))
+      |                                            ^~~~~~~~~
+      |                                            |
+      |                                            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:279:44: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:291:55: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  291 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                       ^~~~~~
+../Core/Src/main.c:291:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:291:55: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+../Core/Src/main.c:291:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:291:62: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  291 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                              ^~~~~~~
+      |                                                              |
+      |                                                              uint8_t * {aka unsigned char *}
+../Core/Src/main.c:291:62: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "UART_test.elf" @"objects.list"   -mcpu=cortex-m0plus -T"E:\Github-ex\STM32_UART_working\UART_test\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_test.elf
+ 
+arm-none-eabi-size  UART_test.elf 
+arm-none-eabi-objdump -h -S UART_test.elf  > "UART_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  18228	     20	   1828	  20076	   4e6c	UART_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_test.list
+ 
+10:31:42 **** Incremental Build of configuration Debug for project UART_test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:109:46: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  109 |                   HAL_UART_Transmit(&huart2, "Pressed!\n\r", 10, 10);
+      |                                              ^~~~~~~~~~~~~~
+      |                                              |
+      |                                              char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:111:46: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  111 |                   HAL_UART_Transmit(&huart2, "Released!\n\r", 10, 10);
+      |                                              ^~~~~~~~~~~~~~~
+      |                                              |
+      |                                              char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:277:54: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  277 |                           HAL_UART_Transmit(&huart2, "\n\r", 2, 100);
+      |                                                      ^~~~~~
+      |                                                      |
+      |                                                      char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:278:31: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  278 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                               ^~~~~~
+../Core/Src/main.c:22:1: note: include '<string.h>' or provide a declaration of 'strcmp'
+   21 | #include <stdbool.h>
+  +++ |+#include <string.h>
+   22 | 
+../Core/Src/main.c:278:38: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  278 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                                      ^~~~~~~~~
+      |                                      |
+      |                                      uint8_t * {aka unsigned char *}
+../Core/Src/main.c:278:38: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:281:44: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  281 |                           }else if(!strcmp(rx_buffer, "LED OFF"))
+      |                                            ^~~~~~~~~
+      |                                            |
+      |                                            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:281:44: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:293:55: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  293 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                       ^~~~~~
+../Core/Src/main.c:293:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:293:55: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+../Core/Src/main.c:293:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:293:62: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  293 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                              ^~~~~~~
+      |                                                              |
+      |                                                              uint8_t * {aka unsigned char *}
+../Core/Src/main.c:293:62: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "UART_test.elf" @"objects.list"   -mcpu=cortex-m0plus -T"E:\Github-ex\STM32_UART_working\UART_test\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_test.elf
+ 
+arm-none-eabi-size  UART_test.elf 
+arm-none-eabi-objdump -h -S UART_test.elf  > "UART_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  18272	     20	   1828	  20120	   4e98	UART_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_test.list
+ 
+10:32:40 **** Incremental Build of configuration Debug for project UART_test ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G0B1xx -c -I../Core/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc -I../Drivers/STM32G0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:109:46: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  109 |                   HAL_UART_Transmit(&huart2, "Pressed!\n\r", 10, 10);
+      |                                              ^~~~~~~~~~~~~~
+      |                                              |
+      |                                              char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:111:46: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  111 |                   HAL_UART_Transmit(&huart2, "Released!\n\r", 11, 10);
+      |                                              ^~~~~~~~~~~~~~~
+      |                                              |
+      |                                              char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'HAL_UART_RxCpltCallback':
+../Core/Src/main.c:277:54: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  277 |                           HAL_UART_Transmit(&huart2, "\n\r", 2, 100);
+      |                                                      ^~~~~~
+      |                                                      |
+      |                                                      char *
+In file included from ../Core/Inc/stm32g0xx_hal_conf.h:319,
+                 from ../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h:1633:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1633 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:278:31: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  278 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                               ^~~~~~
+../Core/Src/main.c:22:1: note: include '<string.h>' or provide a declaration of 'strcmp'
+   21 | #include <stdbool.h>
+  +++ |+#include <string.h>
+   22 | 
+../Core/Src/main.c:278:38: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  278 |                           if(!strcmp(rx_buffer, "LED ON"))
+      |                                      ^~~~~~~~~
+      |                                      |
+      |                                      uint8_t * {aka unsigned char *}
+../Core/Src/main.c:278:38: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:281:44: warning: pointer targets in passing argument 1 of 'strcmp' differ in signedness [-Wpointer-sign]
+  281 |                           }else if(!strcmp(rx_buffer, "LED OFF"))
+      |                                            ^~~~~~~~~
+      |                                            |
+      |                                            uint8_t * {aka unsigned char *}
+../Core/Src/main.c:281:44: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+../Core/Src/main.c:293:55: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  293 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                       ^~~~~~
+../Core/Src/main.c:293:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:293:55: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+../Core/Src/main.c:293:55: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:293:62: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  293 |                   HAL_UART_Transmit(&huart2, rx_data, strlen(rx_data), 100);
+      |                                                              ^~~~~~~
+      |                                                              |
+      |                                                              uint8_t * {aka unsigned char *}
+../Core/Src/main.c:293:62: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "UART_test.elf" @"objects.list"   -mcpu=cortex-m0plus -T"E:\Github-ex\STM32_UART_working\UART_test\STM32G0B1RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_test.elf
+ 
+arm-none-eabi-size  UART_test.elf 
+arm-none-eabi-objdump -h -S UART_test.elf  > "UART_test.list"
+   text	   data	    bss	    dec	    hex	filename
+  18272	     20	   1828	  20120	   4e98	UART_test.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_test.list
+ 
